@@ -1,0 +1,10 @@
+{
+  "scenario": "build_box",
+  "description": "Build a 10x10x5 box via occtl_prim_make_box and inspect.",
+  "expected": {
+    "face_count": 6,
+    "edge_count": 12,
+    "vertex_count": 8,
+    "solid_count": 1
+  }
+}

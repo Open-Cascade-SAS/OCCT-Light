@@ -1,0 +1,8 @@
+{
+  "scenario": "section_two_overlapping_boxes",
+  "description": "Section of two 10x10x10 boxes offset by 5 along X. The intersection edges live on the shared face boundary; the result root is a compound containing those edges.",
+  "expected": {
+    "root_kind": "compound",
+    "edge_count_increased": true
+  }
+}

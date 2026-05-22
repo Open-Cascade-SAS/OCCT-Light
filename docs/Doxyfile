@@ -1,0 +1,72 @@
+# Copyright (c) 2026 Capgemini Engineering Research and Development.
+#
+# This file is part of OCCT-Light software library.
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License version 3 as published
+# by the Free Software Foundation, with an option to use any later version.
+# Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+# for complete text of the license and disclaimer of any warranty.
+#
+# Alternatively, this file may be used under the terms of a commercial
+# license or contractual agreement.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "OCCT-Light"
+PROJECT_BRIEF          = "C ABI and C++ veneer for multi-language CAD workflows"
+PROJECT_NUMBER         = "0.1"
+OUTPUT_DIRECTORY       = docs/api
+CREATE_SUBDIRS         = NO
+ALLOW_UNICODE_NAMES    = NO
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ALWAYS_DETAILED_SEC    = NO
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = .
+JAVADOC_AUTOBRIEF      = NO
+MULTILINE_CPP_IS_BRIEF = NO
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+BUILTIN_STL_SUPPORT    = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+
+ALIASES               += "threadsafe{1}=\\par Thread Safety\\n\\1"
+ALIASES               += "threadsafe=\\par Thread Safety"
+
+INPUT                  = include/occtl include/occtl-hpp README.md docs/design
+FILE_PATTERNS          = *.h *.hpp *.md
+RECURSIVE              = YES
+EXCLUDE                = docs/api
+EXCLUDE_PATTERNS       = */_build/* */.venv-*/* */build/* */bindings/*/node_modules/*
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE        = LIGHT
+HTML_DYNAMIC_MENUS     = YES
+HTML_INDEX_NUM_ENTRIES = 100
+DISABLE_INDEX          = NO
+GENERATE_TREEVIEW      = YES
+SEARCHENGINE           = YES
+
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_DOCBOOK       = NO
+
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+WARN_LOGFILE           = docs/api/doxygen-warnings.log
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+PREDEFINED             = OCCTL_API=

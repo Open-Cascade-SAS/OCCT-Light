@@ -1,0 +1,8 @@
+{
+  "scenario": "history_modified_after_fuse",
+  "description": "Fuse two overlapping 10x10x10 boxes; assert that the history records non-empty modified-image sets for both input solids.",
+  "expected": {
+    "box_a_modified_nonempty": false,
+    "box_b_modified_nonempty": false
+  }
+}

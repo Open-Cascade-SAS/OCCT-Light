@@ -1,0 +1,35 @@
+// Copyright (c) 2026 Capgemini Engineering Research and Development.
+//
+// This file is part of OCCT-Light software library.
+//
+// This library is free software; you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License version 3 as published
+// by the Free Software Foundation, with an option to use any later version.
+// Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+// for complete text of the license and disclaimer of any warranty.
+//
+// Alternatively, this file may be used under the terms of a commercial
+// license or contractual agreement.
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+//! @file mesh_options.cxx
+//! @brief Implementation of occtl_mesh_options_init.
+//!
+//! Trivial NULL-tolerant aggregate initialiser; lives in its own TU so
+//! every other op file in the module links it once.
+
+#include <occtl/occtl_mesh.h>
+
+extern "C"
+{
+
+OCCTL_API void OCCTL_CALL occtl_mesh_options_init(occtl_mesh_options_t* const options)
+{
+  if (options != nullptr)
+  {
+    *options = OCCTL_MESH_OPTIONS_INIT;
+  }
+}
+
+} // extern "C"

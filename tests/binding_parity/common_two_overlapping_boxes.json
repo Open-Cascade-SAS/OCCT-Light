@@ -1,0 +1,8 @@
+{
+  "scenario": "common_two_overlapping_boxes",
+  "description": "Intersect two 10x10x10 boxes offset by (5,5,5). Adds the 5x5x5 overlap as a new solid root; the two inputs remain in the graph (3 solids total).",
+  "expected": {
+    "root_kind_in": ["solid", "compound"],
+    "solid_count_at_least": 3
+  }
+}

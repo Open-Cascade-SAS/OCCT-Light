@@ -1,0 +1,88 @@
+<!--
+  Copyright (c) 2026 Capgemini Engineering Research and Development.
+
+  This file is part of OCCT-Light software library.
+
+  This library is free software; you can redistribute it and/or modify it under
+  the terms of the GNU Affero General Public License version 3 as published
+  by the Free Software Foundation, with an option to use any later version.
+  Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+  for complete text of the license and disclaimer of any warranty.
+
+  Alternatively, this file may be used under the terms of a commercial
+  license or contractual agreement.
+
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.occtl</groupId>
+  <artifactId>occtl-java</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <name>OCCT-Light Java binding</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>21</maven.compiler.release>
+    <jna.version>5.14.0</jna.version>
+    <junit.version>5.11.2</junit.version>
+    <jackson.version>2.17.2</jackson.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>${jna.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+          <environmentVariables>
+            <OCCTL_LIBRARY_PATH>${env.OCCTL_LIBRARY_PATH}</OCCTL_LIBRARY_PATH>
+            <OCCTL_LIBRARY_NAME>${env.OCCTL_LIBRARY_NAME}</OCCTL_LIBRARY_NAME>
+          </environmentVariables>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

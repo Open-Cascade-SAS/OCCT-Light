@@ -1,0 +1,38 @@
+// Copyright (c) 2026 Capgemini Engineering Research and Development.
+//
+// This file is part of OCCT-Light software library.
+//
+// This library is free software; you can redistribute it and/or modify it under
+// the terms of the GNU Affero General Public License version 3 as published
+// by the Free Software Foundation, with an option to use any later version.
+// Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+// for complete text of the license and disclaimer of any warranty.
+//
+// Alternatively, this file may be used under the terms of a commercial
+// license or contractual agreement.
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+#ifndef OCCTL_TOPO_GRAPH_GEOMETRY_KIND_CACHE_HXX
+#define OCCTL_TOPO_GRAPH_GEOMETRY_KIND_CACHE_HXX
+
+#include <BRepGraph.hxx>
+#include <BRepGraph_NodeId.hxx>
+
+#include <occtl/occtl_curves.h>
+#include <occtl/occtl_surfaces.h>
+
+namespace OcctL::Topo
+{
+
+bool ComputeEdgeCurveKind(BRepGraph&          theGraph,
+                          BRepGraph_EdgeId    theEdge,
+                          occtl_curve_kind_t& theOutKind);
+
+bool ComputeFaceSurfaceKind(BRepGraph&            theGraph,
+                            BRepGraph_FaceId      theFace,
+                            occtl_surface_kind_t& theOutKind);
+
+} // namespace OcctL::Topo
+
+#endif // OCCTL_TOPO_GRAPH_GEOMETRY_KIND_CACHE_HXX

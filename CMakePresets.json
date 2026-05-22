@@ -1,0 +1,131 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": { "major": 3, "minor": 23, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "minimal",
+      "displayName": "Minimal (core + geom + topo + prim)",
+      "inherits": "default",
+      "cacheVariables": {
+        "OCCTL_BUILD_GEOM":   "ON",
+        "OCCTL_BUILD_TOPO":   "ON",
+        "OCCTL_BUILD_PRIM":   "ON",
+        "OCCTL_BUILD_BOOL":   "OFF",
+        "OCCTL_BUILD_MESH":   "OFF",
+        "OCCTL_BUILD_HEAL":   "OFF",
+        "OCCTL_BUILD_DE":     "OFF",
+        "OCCTL_BUILD_VIZ":    "OFF"
+      }
+    },
+    {
+      "name": "cad",
+      "displayName": "CAD (minimal + bool + mesh + heal + text + io_brep + io_step + io_stl + de)",
+      "inherits": "minimal",
+      "cacheVariables": {
+        "OCCTL_BUILD_BOOL":     "ON",
+        "OCCTL_BUILD_MESH":     "ON",
+        "OCCTL_BUILD_HEAL":     "ON",
+        "OCCTL_BUILD_TEXT":     "ON",
+        "OCCTL_BUILD_IO_BREP":  "ON",
+        "OCCTL_BUILD_IO_STEP":  "ON",
+        "OCCTL_BUILD_IO_STL":   "ON",
+        "OCCTL_BUILD_DE":       "ON"
+      }
+    },
+    {
+      "name": "full",
+      "displayName": "Full (all implemented headless modules)",
+      "inherits": "cad",
+      "cacheVariables": {
+        "OCCTL_BUILD_IO_IGES":  "ON",
+        "OCCTL_BUILD_IO_OBJ":   "ON",
+        "OCCTL_BUILD_IO_GLTF":  "ON",
+        "OCCTL_BUILD_IO_VRML":  "ON",
+        "OCCTL_BUILD_IO_PLY":   "ON"
+      }
+    },
+    {
+      "name": "full-with-viz",
+      "displayName": "Full + Viz (interactive desktop CAD)",
+      "inherits": "full",
+      "cacheVariables": {
+        "OCCTL_BUILD_VIZ": "ON"
+      }
+    },
+    {
+      "name": "core-only",
+      "displayName": "Core only (foundation; requires OCCT_DIR)",
+      "inherits": "default",
+      "cacheVariables": {
+        "OCCTL_BUILD_GEOM":   "OFF",
+        "OCCTL_BUILD_TOPO":   "OFF",
+        "OCCTL_BUILD_PRIM":   "OFF"
+      }
+    },
+    {
+      "name": "geom-only",
+      "displayName": "Geom only (core + geom; requires OCCT_DIR)",
+      "inherits": "default",
+      "cacheVariables": {
+        "OCCTL_BUILD_GEOM":   "ON",
+        "OCCTL_BUILD_TOPO":   "OFF",
+        "OCCTL_BUILD_PRIM":   "OFF"
+      }
+    },
+    {
+      "name": "wasm",
+      "displayName": "WASM (Emscripten static library for web binding)",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "OCCTL_SHARED_LIBS": "OFF",
+        "OCCTL_BUILD_TESTING": "OFF",
+        "OCCTL_ENFORCE_HEADER_HYGIENE": "OFF",
+        "OCCTL_BUILD_BINDINGS_WASM": "OFF",
+        "OCCTL_BUILD_GEOM": "ON",
+        "OCCTL_BUILD_TOPO": "ON",
+        "OCCTL_BUILD_PRIM": "ON",
+        "OCCTL_BUILD_TEXT": "ON",
+        "OCCTL_BUILD_BOOL": "ON",
+        "OCCTL_BUILD_MESH": "ON",
+        "OCCTL_BUILD_HEAL": "ON",
+        "OCCTL_BUILD_IO_BREP": "ON",
+        "OCCTL_BUILD_IO_STEP": "ON",
+        "OCCTL_BUILD_IO_IGES": "ON",
+        "OCCTL_BUILD_IO_STL": "ON",
+        "OCCTL_BUILD_IO_OBJ": "ON",
+        "OCCTL_BUILD_IO_GLTF": "OFF",
+        "OCCTL_BUILD_IO_VRML": "ON",
+        "OCCTL_BUILD_IO_PLY": "ON",
+        "OCCTL_BUILD_DE": "ON",
+        "OCCTL_BUILD_VIZ": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "minimal",       "configurePreset": "minimal" },
+    { "name": "cad",           "configurePreset": "cad" },
+    { "name": "full",          "configurePreset": "full" },
+    { "name": "full-with-viz", "configurePreset": "full-with-viz" },
+    { "name": "core-only",     "configurePreset": "core-only" },
+    { "name": "geom-only",     "configurePreset": "geom-only" }
+  ],
+  "testPresets": [
+    { "name": "minimal",       "configurePreset": "minimal",       "output": { "outputOnFailure": true } },
+    { "name": "cad",           "configurePreset": "cad",           "output": { "outputOnFailure": true } },
+    { "name": "full",          "configurePreset": "full",          "output": { "outputOnFailure": true } },
+    { "name": "full-with-viz", "configurePreset": "full-with-viz", "output": { "outputOnFailure": true } },
+    { "name": "core-only",     "configurePreset": "core-only",     "output": { "outputOnFailure": true } },
+    { "name": "geom-only",     "configurePreset": "geom-only",     "output": { "outputOnFailure": true } }
+  ]
+}

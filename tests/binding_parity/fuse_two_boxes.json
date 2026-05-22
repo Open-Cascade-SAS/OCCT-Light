@@ -1,0 +1,8 @@
+{
+  "scenario": "fuse_two_boxes",
+  "description": "Fuse two 10x10x10 boxes that overlap along X by 5 units; expect a single solid root.",
+  "expected": {
+    "root_kind_in": ["solid", "compound"],
+    "history_modified_nonempty_on_first_face_of_box_a": false
+  }
+}

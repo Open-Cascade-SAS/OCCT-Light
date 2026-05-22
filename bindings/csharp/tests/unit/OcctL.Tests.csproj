@@ -1,0 +1,38 @@
+<!--
+  Copyright (c) 2026 Capgemini Engineering Research and Development.
+
+  This file is part of OCCT-Light software library.
+
+  This library is free software; you can redistribute it and/or modify it under
+  the terms of the GNU Affero General Public License version 3 as published
+  by the Free Software Foundation, with an option to use any later version.
+  Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+  for complete text of the license and disclaimer of any warranty.
+
+  Alternatively, this file may be used under the terms of a commercial
+  license or contractual agreement.
+
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+  <PropertyGroup>
+    <!-- Override Directory.Build.props: pick whichever .NET runtime is actually
+         installed on the developer's machine. The shipped binding still targets
+         net8.0 (LTS); tests cover the same source compiled against either. -->
+    <TargetFramework>net9.0</TargetFramework>
+    <IsAotCompatible>false</IsAotCompatible>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\api\OcctL.csproj" />
+    <ProjectReference Include="..\..\src\ffi\OcctL.Native.csproj" />
+  </ItemGroup>
+</Project>

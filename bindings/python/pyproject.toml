@@ -1,0 +1,77 @@
+# Copyright (c) 2026 Capgemini Engineering Research and Development.
+#
+# This file is part of OCCT-Light software library.
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License version 3 as published
+# by the Free Software Foundation, with an option to use any later version.
+# Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+# for complete text of the license and disclaimer of any warranty.
+#
+# Alternatively, this file may be used under the terms of a commercial
+# license or contractual agreement.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "occtl"
+version = "0.1.0"
+description = "Python binding for OCCT-Light, a C-ABI wrapper around Open CASCADE Technology"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "AGPL-3.0-or-later"
+authors = [
+    { name = "Capgemini Engineering Research and Development" },
+]
+keywords = ["occt", "opencascade", "cad", "geometry", "brep"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "cffi>=1.16",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "build>=1.0",
+    "libclang>=18",
+]
+
+[project.urls]
+Homepage = "https://github.com/Open-Cascade-SAS/OCCT-Light"
+Issues = "https://github.com/Open-Cascade-SAS/OCCT-Light/issues"
+
+[tool.setuptools]
+include-package-data = true
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["occtl*"]
+exclude = ["tests*", "tools*", "stubs*"]
+
+[tool.setuptools.package-data]
+occtl = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:cffi.*",
+]

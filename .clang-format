@@ -1,0 +1,80 @@
+# Copyright (c) 2026 Capgemini Engineering Research and Development.
+#
+# This file is part of OCCT-Light software library.
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License version 3 as published
+# by the Free Software Foundation, with an option to use any later version.
+# Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+# for complete text of the license and disclaimer of any warranty.
+#
+# Alternatively, this file may be used under the terms of a commercial
+# license or contractual agreement.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# OCCT-Light: clang-format configuration.
+# Coding rules mirror OCCT's house style; header sorting is enabled and
+# tuned for the wrapper's three-tier include grouping.
+# Reference: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+---
+Language: Cpp
+Standard: c++17
+
+# Defaults from the Microsoft style (matches OCCT).
+BasedOnStyle: Microsoft
+
+# Style options.
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowAllArgumentsOnNextLine: false
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: Inline
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeTernaryOperators: true
+ColumnLimit: 100
+ContinuationIndentWidth: 2
+IndentCaseLabels: true
+IndentExternBlock: NoIndent
+IndentPPDirectives: BeforeHash
+IndentWidth: 2
+IndentWrappedFunctionNames: true
+PackConstructorInitializers: Never
+PointerAlignment: Left
+ReferenceAlignment: Left
+SeparateDefinitionBlocks: Always
+UseTab: Never
+
+# OCCT-Light deviation from upstream OCCT: header sorting is ON, with
+# our authored grouping preserved (project / occtl / OCCT / system / gtest).
+SortIncludes: CaseSensitive
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex:    '^"'         # project headers
+    Priority: 1
+  - Regex:    '^<occtl'    # OCCT-Light public headers
+    Priority: 2
+  - Regex:    '^<(BRep|TopoDS|Geom|gp_|TCollection|NCollection|Standard|Poly|TopAbs|TopExp|TopLoc|XCAF|TDF|TDocStd|BinTools|RWGltf|RWObj|RWMesh|STEP|IGES|StlAPI|VrmlAPI|Helix|HLR|BRepMesh|BRepAlgoAPI|BRepBuilderAPI|BRepPrimAPI|BRepGraph|AIS|V3d|Graphic3d|OpenGl|SelectMgr|Select3D|Prs3d|MathLin|MathSys|MathUtils)' # OCCT
+    Priority: 3
+  - Regex:    '^<gtest'
+    Priority: 5
+  - Regex:    '^<.*\.h>'   # C system headers
+    Priority: 4
+  - Regex:    '^<.*>'      # C++ standard library
+    Priority: 4
+
+# OCCT-specific macro hints.
+StatementMacros:
+  - Standard_FALLTHROUGH
+  - OCC_CATCH_SIGNALS
+  - DEFINE_STANDARD_RTTIEXT
+  - Draw_Drawable3D_FACTORY
+  - Standard_DEPRECATED
+TypenameMacros:
+  - Handle

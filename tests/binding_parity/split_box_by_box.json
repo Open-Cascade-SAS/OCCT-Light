@@ -1,0 +1,9 @@
+{
+  "scenario": "split_box_by_box",
+  "description": "Split a 10x10x10 box by a second 10x10x10 box offset by 5 along Z. The result root is a compound containing two stacked solid pieces.",
+  "expected": {
+    "root_kind": "compound",
+    "compound_count_at_least": 1,
+    "solid_count_at_least": 4
+  }
+}

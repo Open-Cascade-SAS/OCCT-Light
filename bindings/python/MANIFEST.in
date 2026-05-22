@@ -1,0 +1,5 @@
+include README.md
+include pyproject.toml
+include src/occtl/py.typed
+recursive-include src/occtl *.py *.pyi
+recursive-include stubs *.pyi

@@ -1,0 +1,56 @@
+# Copyright (c) 2026 Capgemini Engineering Research and Development.
+#
+# This file is part of OCCT-Light software library.
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License version 3 as published
+# by the Free Software Foundation, with an option to use any later version.
+# Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+# for complete text of the license and disclaimer of any warranty.
+#
+# Alternatively, this file may be used under the terms of a commercial
+# license or contractual agreement.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+{% set name = "occtl-python" %}
+{% set version = environ.get("OCCTL_BINDING_VERSION", "0.1.0") %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: ../../../..
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install ./bindings/python --no-deps -vv"
+
+requirements:
+  host:
+    - python >=3.11
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python >=3.11
+    - cffi >=1.16
+    - numpy >=1.26
+
+test:
+  imports:
+    - occtl
+  commands:
+    - python -c "import occtl; print(occtl.__version__)"
+
+about:
+  home: https://github.com/Open-Cascade-SAS/OCCT-Light
+  summary: Python binding package for OCCT-Light.
+  license: AGPL-3.0-or-later
+  license_file: LICENSE_AGPL_30.txt
+
+extra:
+  recipe-maintainers:
+    - capgemini-engineering-research-and-development

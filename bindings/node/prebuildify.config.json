@@ -1,0 +1,12 @@
+{
+  "napi": true,
+  "strip": true,
+  "platforms": [
+    { "platform": "linux",  "arch": "x64"   },
+    { "platform": "linux",  "arch": "arm64" },
+    { "platform": "darwin", "arch": "arm64" },
+    { "platform": "darwin", "arch": "x64"   },
+    { "platform": "win32",  "arch": "x64"   }
+  ],
+  "comment": "prebuildify-cross is invoked per-platform in CI; this config records the matrix."
+}

@@ -1,0 +1,50 @@
+# Copyright (c) 2026 Capgemini Engineering Research and Development.
+#
+# This file is part of OCCT-Light software library.
+#
+# This library is free software; you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License version 3 as published
+# by the Free Software Foundation, with an option to use any later version.
+# Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+# for complete text of the license and disclaimer of any warranty.
+#
+# Alternatively, this file may be used under the terms of a commercial
+# license or contractual agreement.
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+Checks: >
+  -*,
+  modernize-deprecated-headers,
+  modernize-redundant-void-arg,
+  modernize-use-bool-literals,
+  modernize-use-equals-default,
+  modernize-use-equals-delete,
+  modernize-use-nullptr,
+  modernize-use-override,
+  performance-avoid-endl,
+  performance-move-constructor-init,
+  readability-braces-around-statements,
+  readability-delete-null-pointer,
+  readability-redundant-control-flow,
+  readability-redundant-declaration,
+  readability-redundant-function-ptr-dereference,
+  readability-redundant-member-init,
+  readability-redundant-string-init,
+  readability-static-accessed-through-instance
+
+# Treat all enabled checks as warnings; CI can promote them to errors via
+# `-warnings-as-errors=*` on the command line.
+WarningsAsErrors: ''
+
+# Run on first-party code only. The C ABI headers we ship pull in <stdint.h>
+# and <stddef.h>; nothing else from the system. Keep system headers off.
+HeaderFilterRegex: '^.*/(include/occtl(-hpp)?|src|tests)/.*$'
+SystemHeaders: false
+FormatStyle: file
+
+CheckOptions:
+  # Allman braces are mandated by .clang-format; the brace-checker should
+  # require them on every controlled statement, including single-line ones.
+  - key:   readability-braces-around-statements.ShortStatementLines
+    value: '0'

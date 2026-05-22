@@ -1,0 +1,8 @@
+{
+  "scenario": "cut_box_corner",
+  "description": "Subtract a 5x5x5 corner box from a 10x10x10 box. Adds the cut solid as a new graph root; the original two solids remain in the graph.",
+  "expected": {
+    "root_kind_in": ["solid", "compound"],
+    "solid_count_at_least": 3
+  }
+}

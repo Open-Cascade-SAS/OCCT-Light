@@ -1,0 +1,41 @@
+<!--
+  Copyright (c) 2026 Capgemini Engineering Research and Development.
+
+  This file is part of OCCT-Light software library.
+
+  This library is free software; you can redistribute it and/or modify it under
+  the terms of the GNU Affero General Public License version 3 as published
+  by the Free Software Foundation, with an option to use any later version.
+  Consult the file LICENSE_AGPL_30.txt included in OCCT-Light distribution
+  for complete text of the license and disclaimer of any warranty.
+
+  Alternatively, this file may be used under the terms of a commercial
+  license or contractual agreement.
+
+  SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Project>
+  <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+  <PropertyGroup>
+    <!-- Targeting net8.0 keeps the binding compatible with the LTS .NET runtime;
+         when only .NET 9 is installed (this host's case) net8.0 packages still run
+         under the 9.x runtime via roll-forward, but a missing 8.0 desktop runtime
+         can defeat the test host. We pick net8.0 for shipped packages; the test
+         and parity projects override this with net9.0 below. -->
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsAotCompatible>true</IsAotCompatible>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>CS1591;CS1573</WarningsNotAsErrors>
+    <Company>Capgemini Engineering Research and Development</Company>
+    <Authors>Capgemini Engineering Research and Development</Authors>
+    <Copyright>Copyright (c) 2026 Capgemini Engineering Research and Development. AGPL-3.0-or-later.</Copyright>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Open-Cascade-SAS/occt-light</RepositoryUrl>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+</Project>

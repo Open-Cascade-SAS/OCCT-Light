@@ -1,0 +1,38 @@
+@PACKAGE_INIT@
+
+# OCCT-Light CMake config. Consumers do:
+#
+#   find_package(OCCTL REQUIRED COMPONENTS core topo)
+#   target_link_libraries(my_app PRIVATE OCCTL::core OCCTL::topo)
+#
+# Component targets are compatibility interfaces to the single physical
+# OCCT-Light library built for this feature set.
+
+include(CMakeFindDependencyMacro)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
+
+find_dependency(Threads)
+set(OCCTL_REQUIRED_OCCT_TOOLKITS "@OCCTL_REQUIRED_OCCT_TOOLKITS@")
+if(OCCTL_REQUIRED_OCCT_TOOLKITS)
+  find_dependency(OCCT COMPONENTS ${OCCTL_REQUIRED_OCCT_TOOLKITS})
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/OCCTLTargets.cmake")
+
+set(OCCTL_VERSION_MAJOR @OCCTL_VERSION_MAJOR@)
+set(OCCTL_VERSION_MINOR @OCCTL_VERSION_MINOR@)
+set(OCCTL_VERSION_PATCH @OCCTL_VERSION_PATCH@)
+set(OCCTL_ABI_VERSION   @OCCTL_ABI_VERSION@)
+set(OCCTL_LIBRARY_NAME  "@OCCTL_LIBRARY_OUTPUT_NAME@")
+set(OCCTL_BUILT_COMPONENTS "@OCCTL_BUILT_COMPONENTS@")
+set(OCCTL_FEATURE_METADATA_FILE "${CMAKE_CURRENT_LIST_DIR}/OCCTLFeatures.json")
+
+foreach(_occtl_component IN LISTS OCCTL_FIND_COMPONENTS)
+  if(_occtl_component IN_LIST OCCTL_BUILT_COMPONENTS)
+    set(OCCTL_${_occtl_component}_FOUND TRUE)
+  else()
+    set(OCCTL_${_occtl_component}_FOUND FALSE)
+  endif()
+endforeach()
+
+check_required_components(OCCTL)

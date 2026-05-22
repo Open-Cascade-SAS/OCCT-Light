@@ -1,0 +1,63 @@
+{
+  "name": "@occtl/wasm",
+  "version": "0.1.0",
+  "description": "OCCT-Light WASM binding — Open CASCADE Technology, browser-ready via Emscripten.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./wasm": "./dist/occtl.wasm",
+    "./loader": {
+      "types": "./dist/occtl.d.ts",
+      "import": "./dist/occtl.js"
+    }
+  },
+  "scripts": {
+    "generate": "tsc tools/generate_facade.ts --module nodenext --moduleResolution nodenext --target es2022 --outDir tools-dist && node tools-dist/generate_facade.js --abi ../../build/abi.json",
+    "build:ts": "tsc -p tsconfig.json",
+    "build:wasm": "echo 'Run: emcmake cmake -S src/native -B build && emmake make -C build -j'",
+    "build": "npm run generate && npm run build:ts",
+    "test": "vitest run tests",
+    "test:smoke": "vitest run tests/smoke.test.ts",
+    "test:coverage": "vitest run tests/coverage.test.ts",
+    "parity": "NODE_OPTIONS=--no-deprecation node --import tsx tests/parity/runner.ts",
+    "clean": "rm -rf dist tools-dist build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vitest": "^1.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "occt",
+    "occt-light",
+    "cad",
+    "geometry",
+    "topology",
+    "brep",
+    "wasm",
+    "emscripten"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Open-Cascade-SAS/OCCT-Light.git",
+    "directory": "bindings/wasm"
+  }
+}
